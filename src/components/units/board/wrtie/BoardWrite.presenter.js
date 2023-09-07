@@ -44,7 +44,7 @@ export default function BoardWriteUI(prop) {
             onChange={prop.onChangeContent}
             placeholder="내용을 작성해주세요"
           />
-          <S.ErrorMessage>{prop.contentError}</S.ErrorMessage>
+          <S.ErrorMessage>{prop.contentsError}</S.ErrorMessage>
         </S.BoxWrapper>
 
         <S.BoxWrapper>
