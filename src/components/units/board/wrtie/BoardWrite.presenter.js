@@ -5,7 +5,7 @@ export default function BoardWriteUI(prop) {
     <>
       <S.Wrapper>
         <S.TitleDiv>
-          <S.Title>게시물 등록</S.Title>
+          <S.Title>{prop.isEdit ? "게시글 수정" : "게시글 등록"}</S.Title>
         </S.TitleDiv>
 
         <S.WriterWrapper>
@@ -14,6 +14,7 @@ export default function BoardWriteUI(prop) {
             <S.WriterInput
               onChange={prop.onChangeWriter}
               placeholder="이름을 적어주세요"
+              defaultValue={prop.data?.fetchBoard.writer}
             />
             <S.ErrorMessage>{prop.writerError}</S.ErrorMessage>
           </S.BoxWrapper>
@@ -34,6 +35,7 @@ export default function BoardWriteUI(prop) {
           <S.LongInput
             onChange={prop.onChangeTitle}
             placeholder="제목을 작성해주세요"
+            defaultValue={prop.data?.fetchBoard.title}
           />
           <S.ErrorMessage>{prop.titleError}</S.ErrorMessage>
         </S.BoxWrapper>
@@ -43,6 +45,7 @@ export default function BoardWriteUI(prop) {
           <S.ContentInput
             onChange={prop.onChangeContent}
             placeholder="내용을 작성해주세요"
+            defaultValue={prop.data?.fetchBoard.contents}
           />
           <S.ErrorMessage>{prop.contentsError}</S.ErrorMessage>
         </S.BoxWrapper>
@@ -86,7 +89,12 @@ export default function BoardWriteUI(prop) {
         </S.BoxWrapper>
 
         <S.ButtonDiv>
-          <S.SubmitBtn onClick={prop.onClickSubmit}>등록하기</S.SubmitBtn>
+          <S.SubmitBtn
+            onClick={prop.isEdit ? prop.onClickUpdate : prop.onClickSubmit}
+            isActive={prop.isActive}
+          >
+            {prop.isEdit ? "수정하기" : "등록하기"}
+          </S.SubmitBtn>
         </S.ButtonDiv>
       </S.Wrapper>
     </>

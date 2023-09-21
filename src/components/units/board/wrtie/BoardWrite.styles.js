@@ -143,10 +143,12 @@ export const RadioBox = styled.div`
 export const SubmitBtn = styled.button`
   width: 179px;
   height: 52px;
-  background-color: #ffc600;
+  background-color: ${(prop) =>
+    prop.isEdit ? "#ffc600" : prop.isActive === true ? "#ffc600" : "gray"};
   border: none;
   font-size: 16px;
   font-weight: 500;
+  color: black;
   cursor: pointer;
 `;
 
