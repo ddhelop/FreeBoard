@@ -27,6 +27,7 @@ export const ContentInput = styled.textarea`
   border: 1px solid #bdbdbd;
   padding: 15px;
   font-size: 16px;
+
   ::placeholder {
     font-weight: 500;
     color: #c4c4c4;

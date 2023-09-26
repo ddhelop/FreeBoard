@@ -120,7 +120,7 @@ export default function BoardWrite(props) {
       alert("게시글 수정이 완료되었습니다.");
       router.push(`/boards/${result.data?.updateBoard._id}`);
     } catch (error) {
-      alert("error.message");
+      alert(error.message);
     }
   };
 
