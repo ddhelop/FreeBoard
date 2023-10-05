@@ -1,6 +1,7 @@
 import * as D from "./BoardDetail.styles";
+import { IBoardDetailUIProps } from "./BoardDetailTypes";
 
-export default function BoardDetailUI(prop) {
+export default function BoardDetailUI(prop: IBoardDetailUIProps) {
   return (
     <>
       <D.Wrapper>

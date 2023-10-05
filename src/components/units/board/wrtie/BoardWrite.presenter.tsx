@@ -1,6 +1,7 @@
 import * as S from "./BoardWrite.styles";
+import { IBoardWriteUIProps } from "./BoardWriteTypes";
 
-export default function BoardWriteUI(prop) {
+export default function BoardWriteUI(prop: IBoardWriteUIProps) {
   return (
     <>
       <S.Wrapper>
@@ -47,7 +48,7 @@ export default function BoardWriteUI(prop) {
             placeholder="내용을 작성해주세요"
             defaultValue={prop.data?.fetchBoard.contents}
           />
-          <S.ErrorMessage>{prop.contentsError}</S.ErrorMessage>
+          <S.ErrorMessage>{prop.contentError}</S.ErrorMessage>
         </S.BoxWrapper>
 
         <S.BoxWrapper>

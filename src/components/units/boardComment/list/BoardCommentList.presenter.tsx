@@ -1,9 +1,10 @@
 import * as L from "./BoardCommentList.styles";
+import { IBoardCommentListUIProps } from "./BoardCommentListTypes";
 
-export default function BoardCommentListUI(props) {
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
     <div>
-      {props.data?.fetchBoardComments.map((el) => (
+      {props.data?.fetchBoardComments.map((el: any) => (
         <L.Wrapper>
           <L.CommentDiv>
             <L.UserIcon src="/commentList/UserIcon.png" />

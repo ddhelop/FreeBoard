@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.query";
 import { useRouter } from "next/router";
+import { IBoardWriteProps, IMyVariable } from "./BoardWriteTypes";
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
@@ -21,7 +22,7 @@ export default function BoardWrite(props) {
 
   const router = useRouter();
 
-  function onChangeWriter(event) {
+  function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
     if (event.target.value !== "") {
       setWriterError("");
@@ -33,7 +34,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
     if (event.target.value !== "") {
       setPasswordError("");
@@ -45,7 +46,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangeTitle(event) {
+  function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
     if (event.target.value !== "") {
       setTitleError("");
@@ -57,7 +58,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangeContent(event) {
+  function onChangeContent(event: ChangeEvent<HTMLInputElement>) {
     setContent(event.target.value);
     if (event.target.value !== "") {
       setContentError("");
@@ -105,7 +106,7 @@ export default function BoardWrite(props) {
       return;
     }
 
-    const updateBoardInput = {};
+    const updateBoardInput: IMyVariable = {};
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
 
@@ -119,7 +120,7 @@ export default function BoardWrite(props) {
       });
       alert("게시글 수정이 완료되었습니다.");
       router.push(`/boards/${result.data?.updateBoard._id}`);
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   };

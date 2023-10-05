@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
 import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.query";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.query";
 
 export default function BoardCommentWrite() {
@@ -13,13 +13,13 @@ export default function BoardCommentWrite() {
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const router = useRouter();
 
-  const onChangeWriter = (event) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
   };
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-  const onChangeContents = (event) => {
+  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
     setContents(event.target.value);
   };
 
@@ -42,7 +42,7 @@ export default function BoardCommentWrite() {
           },
         ],
       });
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
     alert("댓글이 등록되었습니다.");

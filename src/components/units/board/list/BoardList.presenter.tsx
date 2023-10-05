@@ -1,7 +1,8 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as L from "./BoardList.styles";
+import { IBoardListUIProps } from "./BoardListTypes";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <>
       <L.Wrapper>
@@ -13,7 +14,7 @@ export default function BoardListUI(props) {
             <L.ColumnHeaderBasic>날짜</L.ColumnHeaderBasic>
           </L.Row>
 
-          {props.data?.fetchBoards.map((el, index) => (
+          {props.data?.fetchBoards.map((el: any) => (
             <L.Row key={el.number}>
               <L.ColumnBasic>
                 {String(el._id).slice(-4).toUpperCase()}
@@ -29,8 +30,8 @@ export default function BoardListUI(props) {
 
         <L.Footer>
           <L.PageNumberDiv>
-            <Number>하나</Number>
-            <Number>둘</Number>
+            <L.Number>하나</L.Number>
+            <L.Number>둘</L.Number>
           </L.PageNumberDiv>
 
           <L.MakePageBtn

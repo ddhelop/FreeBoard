@@ -47,7 +47,7 @@ export const CommentDiv = styled.div`
   border: 1px solid #bdbdbd;
 `;
 
-export const CommentText = styled.textarea`
+export const CommentText = styled.input`
   border: none;
   height: 110px;
   padding: 15px;
