@@ -1,8 +1,9 @@
 import { ChangeEvent, MouseEvent } from "react";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardWriteProps {
   isEdit: boolean;
-  data?: any;
+  data?: Pick<IQuery, "fetchBoard">;
 }
 
 export interface IMyVariable {
@@ -23,10 +24,9 @@ export interface IBoardWriteUIProps {
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
   isActive: boolean;
   isEdit: boolean;
-  data?: any;
+  data?: Pick<IQuery, "fetchBoard">;
 }
 
 export interface IBoardWriteStylesProps {
-  isEdit: boolean;
   isActive: boolean;
 }

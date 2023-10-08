@@ -120,8 +120,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       });
       alert("게시글 수정이 완료되었습니다.");
       router.push(`/boards/${result.data?.updateBoard._id}`);
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
     }
   };
 

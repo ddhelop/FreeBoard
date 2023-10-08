@@ -15,7 +15,7 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
             <S.WriterInput
               onChange={prop.onChangeWriter}
               placeholder="이름을 적어주세요"
-              defaultValue={prop.data?.fetchBoard.writer}
+              defaultValue={prop.data?.fetchBoard.writer ?? ""}
             />
             <S.ErrorMessage>{prop.writerError}</S.ErrorMessage>
           </S.BoxWrapper>
