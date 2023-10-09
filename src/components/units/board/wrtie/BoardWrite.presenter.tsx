@@ -1,5 +1,5 @@
 import * as S from "./BoardWrite.styles";
-import { IBoardWriteUIProps } from "./BoardWriteTypes";
+import type { IBoardWriteUIProps } from "./BoardWriteTypes";
 
 export default function BoardWriteUI(prop: IBoardWriteUIProps) {
   return (
@@ -93,6 +93,17 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
           <S.SubmitBtn
             onClick={prop.isEdit ? prop.onClickUpdate : prop.onClickSubmit}
             isActive={prop.isActive}
+            isEdit={prop.isEdit}
+            writerError={prop.writerError}
+            passwordError={prop.passwordError}
+            titleError={prop.titleError}
+            contentError={prop.contentError}
+            onChangeWriter={prop.onChangeWriter}
+            onChangePassword={prop.onChangePassword}
+            onChangeTitle={prop.onChangeTitle}
+            onChangeContent={prop.onChangeContent}
+            onClickSubmit={prop.onClickSubmit}
+            onClickUpdate={prop.onClickUpdate}
           >
             {prop.isEdit ? "수정하기" : "등록하기"}
           </S.SubmitBtn>

@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 export interface IBoardDetailUIProps {
   onClickGoHome: (event: MouseEvent<HTMLButtonElement>) => void;

@@ -5,10 +5,9 @@ import {
   FETCH_BOARD_COMMENTS,
 } from "./BoardCommentList.query";
 import { useRouter } from "next/router";
-import { MouseEvent, useState } from "react";
-import {
+import type { MouseEvent } from "react";
+import type {
   IMutation,
-  IMutationDeleteBoardArgs,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
@@ -27,7 +26,7 @@ export default function BoardCommentList() {
     },
   });
 
-  const onClickDeleteComment = async (event: MouseEvent<HTMLButtonElement>) => {
+  const onClickDeleteComment = async (event: MouseEvent<HTMLImageElement>) => {
     try {
       if (event.target instanceof HTMLInputElement) {
         const myPassword = prompt("비밀번호를 입력하세요.");
@@ -49,8 +48,6 @@ export default function BoardCommentList() {
       alert(error.message);
     }
   };
-
-  console.log(data?.fetchBoardComments);
 
   return (
     <BoardCommentListUI

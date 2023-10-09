@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/units/board/detail/BoardDetail.presenter.js"
+    "src/components/units/board/detail/BoardDetail.presenter.js",
   ],
   "exclude": ["node_modules"]
 }

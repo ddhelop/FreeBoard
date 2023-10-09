@@ -2,7 +2,8 @@ import { useMutation } from "@apollo/client";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
 import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.query";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+import type{ ChangeEvent } from "react";
+import { useState } from "react";
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.query";
 
 export default function BoardCommentWrite() {

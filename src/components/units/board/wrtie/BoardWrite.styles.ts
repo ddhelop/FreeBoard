@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IBoardWriteStylesProps } from "./BoardWriteTypes";
+import type { IBoardWriteUIProps } from "./BoardWriteTypes";
 
 export const Wrapper = styled.div`
   margin: 40px;
@@ -145,8 +145,8 @@ export const RadioBox = styled.div`
 export const SubmitBtn = styled.button`
   width: 179px;
   height: 52px;
-  background-color: ${(prop: IBoardWriteStylesProps) =>
-    prop.isEdit ? "#ffc600" : prop.isActive === true ? "#ffc600" : "gray"};
+  background-color: ${(prop: IBoardWriteUIProps) =>
+    prop.isEdit || prop.isActive ? "#ffc600" : "gray"};
   border: none;
   font-size: 16px;
   font-weight: 500;

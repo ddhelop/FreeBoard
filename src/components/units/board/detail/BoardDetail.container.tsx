@@ -2,8 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import BoardDetailUI from "./BoardDetail.presenter";
 import { DELETE_BOARD, FETCH_BOARD } from "./BoardDetail.query";
 import { useRouter } from "next/router";
-import { FETCH_BOARDS } from "../list/BoardList.query";
-import {
+import type{
   IMutation,
   IMutationDeleteBoardArgs,
   IQuery,
@@ -23,21 +22,28 @@ export default function BoardDetail() {
     IMutationDeleteBoardArgs
   >(DELETE_BOARD);
 
-  const onClickDeleteBoard = () => {
-    deleteBoard({
+  const onClickDeleteBoard = async() => {
+    await deleteBoard({
       variables: {
         boardId: router.query.boardId as string,
       },
     });
     alert("게시글이 삭제되었습니다.");
-    router.push("../../../../boards");
+    await router.push("../../../../boards");
   };
 
-  const onClickUpdate = () => {
-    router.push(`/boards/${router.query.boardId}/edit`);
+  const onClickUpdate = async () => {
+    if (router.query.boardId) {
+      const boardId = Array.isArray(router.query.boardId)
+        ? router.query.boardId[0]
+        : router.query.boardId;
+      await router.push(`/boards/${boardId}/edit`);
+    } else {
+      // router.query.boardId가 undefined인 경우 처리할 로직을 여기에 추가하세요.
+    }
   };
-  const onClickGoHome = () => {
-    router.push(`/boards`);
+  const onClickGoHome = async () => {
+    await router.push(`/boards`);
   };
 
   return (

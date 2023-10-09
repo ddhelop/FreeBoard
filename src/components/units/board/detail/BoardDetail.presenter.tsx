@@ -1,5 +1,5 @@
 import * as D from "./BoardDetail.styles";
-import { IBoardDetailUIProps } from "./BoardDetailTypes";
+import type { IBoardDetailUIProps } from "./BoardDetailTypes";
 
 export default function BoardDetailUI(prop: IBoardDetailUIProps) {
   return (

@@ -1,9 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import type { ChangeEvent } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.query";
 import { useRouter } from "next/router";
-import { IBoardWriteProps, IMyVariable } from "./BoardWriteTypes";
+import type { IBoardWriteProps, IMyVariable } from "./BoardWriteTypes";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const [writer, setWriter] = useState("");
@@ -96,7 +97,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       });
       alert("게시글 등록이 완료되었습니다.");
       console.log(result.data.createBoard._id);
-      router.push(`/boards/${result.data?.createBoard._id}`);
+      await router.push(`/boards/${result.data?.createBoard._id}`);
     }
   };
 
@@ -114,12 +115,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
       const result = await updateBoard({
         variables: {
           boardId: router.query.boardId,
-          password: password,
-          updateBoardInput: updateBoardInput,
+          password,
+          updateBoardInput,
         },
       });
       alert("게시글 수정이 완료되었습니다.");
-      router.push(`/boards/${result.data?.updateBoard._id}`);
+      await router.push(`/boards/${result.data?.updateBoard._id}`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

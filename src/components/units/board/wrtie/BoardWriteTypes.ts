@@ -1,5 +1,5 @@
-import { ChangeEvent, MouseEvent } from "react";
-import { IQuery } from "../../../../commons/types/generated/types";
+import type { ChangeEvent, MouseEvent } from "react";
+import type { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardWriteProps {
   isEdit: boolean;
@@ -25,8 +25,4 @@ export interface IBoardWriteUIProps {
   isActive: boolean;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchBoard">;
-}
-
-export interface IBoardWriteStylesProps {
-  isActive: boolean;
 }
