@@ -4,5 +4,7 @@ export interface IBoardDetailUIProps {
   onClickGoHome: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickDeleteBoard: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickLike: (event:MouseEvent<HTMLImageElement>) => void;
+  onClickDisLike: (event:MouseEvent<HTMLImageElement>) => void;
   data?: any;
 }

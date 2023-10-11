@@ -29,11 +29,11 @@ export default function BoardDetailUI(prop: IBoardDetailUIProps) {
 
           <D.Bottom>
             <D.LikeDiv>
-              <D.LikeIcon src="/detail/Like.png" />
+              <D.LikeIcon src="/detail/Like.png" onClick={prop.onClickLike}/>
               <D.LikeCount>{prop.data?.fetchBoard.likeCount}</D.LikeCount>
             </D.LikeDiv>
             <D.LikeDiv>
-              <D.LikeIcon src="/detail/DisLike.png" />
+              <D.LikeIcon src="/detail/DisLike.png" onClick={prop.onClickDisLike}/>
               <D.DisLikeCount>
                 {prop.data?.fetchBoard.dislikeCount}
               </D.DisLikeCount>
