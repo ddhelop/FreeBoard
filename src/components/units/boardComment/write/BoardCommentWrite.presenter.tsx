@@ -1,5 +1,6 @@
 import * as W from "./BoardCommentWrite.styles";
 import type { IBoardCommentWriteUI } from "./BoardCommentWriteTypes";
+
 export default function BoardCommentWriteUI(props: IBoardCommentWriteUI) {
   return (
     <>
@@ -15,6 +16,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUI) {
             placeholder="비밀번호"
             onChange={props.onChangePassword}
           />
+          <W.RateStar onChange={props.onChangeValue} value={props.value}/>
         </W.UserDataDiv>
         <W.CommentDiv>
           <W.CommentText

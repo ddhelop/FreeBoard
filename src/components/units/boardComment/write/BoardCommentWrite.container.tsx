@@ -10,6 +10,7 @@ export default function BoardCommentWrite() {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
+  const [value, setValue] = useState(0);
 
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const router = useRouter();
@@ -23,6 +24,9 @@ export default function BoardCommentWrite() {
   const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
     setContents(event.target.value);
   };
+  const onChangeValue = (value:number) => {
+    setValue(value);
+  }
 
   const onClickSubmit = async () => {
     try {
@@ -33,7 +37,7 @@ export default function BoardCommentWrite() {
             writer: writer,
             password,
             contents,
-            rating: 3,
+            rating: value,
           },
         },
         refetchQueries: [
@@ -54,6 +58,7 @@ export default function BoardCommentWrite() {
       onChangePassword={onChangePassword}
       onChangeWriter={onChangeWriter}
       onChangeContents={onChangeContents}
+      onChangeValue = {onChangeValue}
     />
   );
 }

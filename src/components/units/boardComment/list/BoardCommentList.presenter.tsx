@@ -9,7 +9,10 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
           <L.CommentDiv>
             <L.UserIcon src="/commentList/UserIcon.png" />
             <L.CommentTextDiv>
-              <L.UserName>{el.writer}</L.UserName>
+              <L.RateDiv>
+                <L.UserName>{el.writer}</L.UserName> 
+                <L.ShowRate disabled value={el.rating}/>
+              </L.RateDiv>
               <L.CommentText>{el.contents}</L.CommentText>
               <L.CommentDay>{el.createdAt}</L.CommentDay>
             </L.CommentTextDiv>

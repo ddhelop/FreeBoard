@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import {Rate} from "antd"
 
 export const Wrapper = styled.div`
   margin: 40px;
@@ -77,3 +78,8 @@ export const CommentSubmit = styled.button`
   color: white;
   cursor: pointer;
 `;
+
+export const RateStar = styled(Rate)`
+  margin-top : 8px;
+  margin-left :15px;
+`

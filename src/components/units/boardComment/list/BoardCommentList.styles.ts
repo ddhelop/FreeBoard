@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import {Rate} from "antd"
 
 export const Wrapper = styled.div`
   margin: 40px;
@@ -51,3 +52,13 @@ export const Icon = styled.img`
   margin-left: 14px;
   cursor: pointer;
 `;
+export const RateDiv = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-items:center
+`
+
+export const ShowRate = styled(Rate)`
+  margin-left:20px;
+  padding-bottom:7px;
+`
