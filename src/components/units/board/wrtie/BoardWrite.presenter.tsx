@@ -1,5 +1,7 @@
+import {Modal} from "antd";
 import * as S from "./BoardWrite.styles";
 import type { IBoardWriteUIProps } from "./BoardWriteTypes";
+import DaumPostcodeEmbed from "react-daum-postcode";
 
 export default function BoardWriteUI(prop: IBoardWriteUIProps) {
   return (
@@ -54,10 +56,10 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
         <S.BoxWrapper>
           <S.SubTitle>주소</S.SubTitle>
           <S.PostNumWrapper>
-            <S.PostNumBox placeholder="07250" />
-            <S.PostNumSearchBtn>우편변호 검색</S.PostNumSearchBtn>
+            <S.PostNumBox placeholder="07250" value={prop.zipCode} />
+            <S.PostNumSearchBtn onClick={prop.onClickToggle}>우편변호 검색</S.PostNumSearchBtn>
           </S.PostNumWrapper>
-          <S.PostInput />
+          <S.PostInput value={prop.address} />
           <S.PostInput />
         </S.BoxWrapper>
 
@@ -104,11 +106,20 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
             onChangeContent={prop.onChangeContent}
             onClickSubmit={prop.onClickSubmit}
             onClickUpdate={prop.onClickUpdate}
+            onClickToggle={prop.onClickToggle}
+            handleComplete={prop.handleComplete}
+            address={prop.address}
+            zipCode={prop.zipCode}
           >
             {prop.isEdit ? "수정하기" : "등록하기"}
           </S.SubmitBtn>
         </S.ButtonDiv>
       </S.Wrapper>
+      {prop.isOpen &&(
+        <Modal open={true} onOk={prop.onClickToggle} onCancel={prop.onClickToggle}>
+        <DaumPostcodeEmbed onComplete={prop.handleComplete}/>
+      </Modal>
+      )}
     </>
   );
 }

@@ -4,6 +4,7 @@ import type { IQuery } from "../../../../commons/types/generated/types";
 export interface IBoardWriteProps {
   isEdit: boolean;
   data?: Pick<IQuery, "fetchBoard">;
+  isOpen?:boolean;
 }
 
 export interface IMyVariable {
@@ -22,7 +23,12 @@ export interface IBoardWriteUIProps {
   onChangeContent: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickToggle: (event:MouseEvent<HTMLButtonElement>) => void;
+  handleComplete : (adr:any) => void;
   isActive: boolean;
   isEdit: boolean;
+  isOpen?:boolean;
   data?: Pick<IQuery, "fetchBoard">;
+  address: string;
+  zipCode: number;
 }

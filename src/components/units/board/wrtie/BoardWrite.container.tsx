@@ -13,6 +13,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [contents, setContent] = useState("");
   const [isActive, setIsActive] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+  
+
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
@@ -92,6 +95,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title,
             contents,
             password,
+            boardAddress:{
+              zipCode,
+              address,
+            }
           },
         },
       });
@@ -125,6 +132,19 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (error instanceof Error) alert(error.message);
     }
   };
+  
+  const [zipCode, setZipCode] = useState("");
+  const [address,setAddress] = useState("")
+  const handleComplete = (data: any) => {
+    setAddress(data.address);
+    setZipCode(data.zonecode);
+    setIsOpen(false);
+  }
+  
+const onClickToggle = () =>{
+  setIsOpen((prev) => !prev )
+}
+
 
   return (
     <BoardWriteUI
@@ -139,8 +159,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangeContent={onChangeContent}
       isActive={isActive}
       isEdit={props.isEdit}
+      isOpen={isOpen}
       data={props.data}
       onClickUpdate={onClickUpdate}
+      onClickToggle={onClickToggle}
+      address={address}
+      zipCode={zipCode}
+      handleComplete={handleComplete}
     />
   );
 }
