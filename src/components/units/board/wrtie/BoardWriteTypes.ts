@@ -21,6 +21,10 @@ export interface IBoardWriteUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContent: (event: ChangeEvent<HTMLInputElement>) => void;
+
+  onChangeAddressDetail : (event: ChangeEvent<HTMLInputElement>) => void;
+
+
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickToggle: (event:MouseEvent<HTMLButtonElement>) => void;
@@ -30,5 +34,5 @@ export interface IBoardWriteUIProps {
   isOpen?:boolean;
   data?: Pick<IQuery, "fetchBoard">;
   address: string;
-  zipCode: number;
+  zipCode: string;
 }

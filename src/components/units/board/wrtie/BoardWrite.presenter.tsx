@@ -3,6 +3,7 @@ import * as S from "./BoardWrite.styles";
 import type { IBoardWriteUIProps } from "./BoardWriteTypes";
 import DaumPostcodeEmbed from "react-daum-postcode";
 
+
 export default function BoardWriteUI(prop: IBoardWriteUIProps) {
   return (
     <>
@@ -16,7 +17,7 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
             <S.SubTitle>작성자</S.SubTitle>
             <S.WriterInput
               onChange={prop.onChangeWriter}
-              placeholder="이름을 적어주세요"
+              placeholder="이름을 적어주세요 "
               defaultValue={prop.data?.fetchBoard.writer ?? ""}
             />
             <S.ErrorMessage>{prop.writerError}</S.ErrorMessage>
@@ -56,11 +57,11 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
         <S.BoxWrapper>
           <S.SubTitle>주소</S.SubTitle>
           <S.PostNumWrapper>
-            <S.PostNumBox placeholder="07250" value={prop.zipCode} />
+            <S.PostNumBox placeholder="07250" value={prop.zipCode != "" ? prop.zipCode : prop.data?.fetchBoard.boardAddress?.zipcode ?? ""} />
             <S.PostNumSearchBtn onClick={prop.onClickToggle}>우편변호 검색</S.PostNumSearchBtn>
           </S.PostNumWrapper>
-          <S.PostInput value={prop.address} />
-          <S.PostInput />
+          <S.PostInput value = {prop.address !== "" ? prop.address : prop.data?.fetchBoard.boardAddress?.address ?? ""} />
+          <S.PostInput defaultValue={prop.data?.fetchBoard.boardAddress?.addressDetail ?? ""} onChange={prop.onChangeAddressDetail} />
         </S.BoxWrapper>
 
         <S.BoxWrapper>
@@ -104,12 +105,14 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
             onChangePassword={prop.onChangePassword}
             onChangeTitle={prop.onChangeTitle}
             onChangeContent={prop.onChangeContent}
+            onChangeAddressDetail={prop.onChangeAddressDetail}
             onClickSubmit={prop.onClickSubmit}
             onClickUpdate={prop.onClickUpdate}
             onClickToggle={prop.onClickToggle}
             handleComplete={prop.handleComplete}
             address={prop.address}
             zipCode={prop.zipCode}
+  
           >
             {prop.isEdit ? "수정하기" : "등록하기"}
           </S.SubmitBtn>

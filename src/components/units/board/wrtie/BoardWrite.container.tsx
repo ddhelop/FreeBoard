@@ -11,6 +11,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContent] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [address,setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+
   const [isActive, setIsActive] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -74,6 +78,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  }
+
   const onClickSubmit = async () => {
     if (!writer) {
       setWriterError("* 이름을 입력해주세요.");
@@ -96,8 +104,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
             contents,
             password,
             boardAddress:{
-              zipCode,
+              zipcode:zipCode,
               address,
+              addressDetail,
             }
           },
         },
@@ -133,8 +142,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
   
-  const [zipCode, setZipCode] = useState("");
-  const [address,setAddress] = useState("")
   const handleComplete = (data: any) => {
     setAddress(data.address);
     setZipCode(data.zonecode);
@@ -157,6 +164,8 @@ const onClickToggle = () =>{
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContent={onChangeContent}
+
+      onChangeAddressDetail={onChangeAddressDetail}
       isActive={isActive}
       isEdit={props.isEdit}
       isOpen={isOpen}
@@ -166,6 +175,7 @@ const onClickToggle = () =>{
       address={address}
       zipCode={zipCode}
       handleComplete={handleComplete}
+
     />
   );
 }
