@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
   margin: 40px;
@@ -124,3 +125,7 @@ export const OptionBtn = styled.button`
   font-size: 16px;
   font-weight: 500;
 `;
+
+export const Youtube = styled(ReactPlayer)`
+  margin: auto;
+`

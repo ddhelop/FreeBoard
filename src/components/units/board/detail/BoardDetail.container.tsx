@@ -46,6 +46,7 @@ export default function BoardDetail() {
       >(DISLIKE_BOARD);
 
     const onClickDisLike = async () => {
+      console.log(data);
       await dislikeBoard({
         variables: {
           boardId: router.query.boardId as string,

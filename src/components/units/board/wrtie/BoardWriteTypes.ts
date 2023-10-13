@@ -10,6 +10,13 @@ export interface IBoardWriteProps {
 export interface IMyVariable {
   title?: string;
   contents?: string;
+  youtubeUrl?: string;
+  boardAddress?: IBoardAddress;
+}
+export interface IBoardAddress{
+  address: string;
+  addressDetail: string;
+  zipcode : string;
 }
 
 export interface IBoardWriteUIProps {
@@ -21,8 +28,8 @@ export interface IBoardWriteUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContent: (event: ChangeEvent<HTMLInputElement>) => void;
-
   onChangeAddressDetail : (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeYoutubeUrl : (event: ChangeEvent<HTMLInputElement>) => void;
 
 
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -34,5 +41,6 @@ export interface IBoardWriteUIProps {
   isOpen?:boolean;
   data?: Pick<IQuery, "fetchBoard">;
   address: string;
-  zipCode: string;
+  zipcode: string;
+  
 }

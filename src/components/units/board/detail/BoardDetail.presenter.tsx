@@ -1,5 +1,6 @@
 import * as D from "./BoardDetail.styles";
 import type { IBoardDetailUIProps } from "./BoardDetailTypes";
+import { Space, Tooltip } from 'antd';
 
 export default function BoardDetailUI(prop: IBoardDetailUIProps) {
   return (
@@ -17,14 +18,28 @@ export default function BoardDetailUI(prop: IBoardDetailUIProps) {
               </D.UserText>
             </D.UserDiv>
             <D.IconDiv>
-              <D.TopIcon src="/detail/Share.png" />
+            <D.TopIcon src="/detail/Share.png" />
+            <Space wrap>
+              <Tooltip title={prop.data?.fetchBoard.boardAddress?.address}>
               <D.TopIcon src="/detail/Location.png" />
+              </Tooltip>
+            </Space>
+
+              
+              
             </D.IconDiv>
           </D.Header>
 
           <D.Body>
             <D.Title>{prop.data?.fetchBoard.title}</D.Title>
             <D.Contents>{prop.data?.fetchBoard.contents}</D.Contents>
+            {prop.data?.fetchBoard.youtubeUrl != "" && (
+              <D.Youtube
+                url ={prop.data?.fetchBoard.youtubeUrl ?? ""}
+                width="486px"
+                height="240px"
+                />  
+            )}
           </D.Body>
 
           <D.Bottom>

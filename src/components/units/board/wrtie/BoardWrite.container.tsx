@@ -4,16 +4,17 @@ import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.query";
 import { useRouter } from "next/router";
-import type { IBoardWriteProps, IMyVariable } from "./BoardWriteTypes";
+import type { IBoardWriteProps, IMyVariable, IBoardAddress } from "./BoardWriteTypes";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContent] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const [zipcode, setZipCode] = useState("");
   const [address,setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [isActive, setIsActive] = useState(false);
 
@@ -82,6 +83,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setAddressDetail(event.target.value);
   }
 
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutubeUrl(event.currentTarget.value);
+  }
+
   const onClickSubmit = async () => {
     if (!writer) {
       setWriterError("* 이름을 입력해주세요.");
@@ -103,8 +108,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title,
             contents,
             password,
+            youtubeUrl,
             boardAddress:{
-              zipcode:zipCode,
+              zipcode,
               address,
               addressDetail,
             }
@@ -126,6 +132,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
     const updateBoardInput: IMyVariable = {};
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
+    if(youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
+    if(zipcode || address || addressDetail){
+      updateBoardInput.boardAddress = {} as IBoardAddress;
+      if(zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
+      if(address) updateBoardInput.boardAddress.address = address;
+      if(addressDetail) updateBoardInput.boardAddress.addressDetail = addressDetail
+    }
 
     try {
       const result = await updateBoard({
@@ -164,6 +177,7 @@ const onClickToggle = () =>{
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContent={onChangeContent}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
 
       onChangeAddressDetail={onChangeAddressDetail}
       isActive={isActive}
@@ -173,7 +187,7 @@ const onClickToggle = () =>{
       onClickUpdate={onClickUpdate}
       onClickToggle={onClickToggle}
       address={address}
-      zipCode={zipCode}
+      zipcode={zipcode}
       handleComplete={handleComplete}
 
     />

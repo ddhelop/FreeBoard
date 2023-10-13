@@ -57,7 +57,7 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
         <S.BoxWrapper>
           <S.SubTitle>주소</S.SubTitle>
           <S.PostNumWrapper>
-            <S.PostNumBox placeholder="07250" value={prop.zipCode != "" ? prop.zipCode : prop.data?.fetchBoard.boardAddress?.zipcode ?? ""} />
+            <S.PostNumBox placeholder="07250" value={prop.zipcode != "" ? prop.zipcode : prop.data?.fetchBoard.boardAddress?.zipcode ?? ""} />
             <S.PostNumSearchBtn onClick={prop.onClickToggle}>우편변호 검색</S.PostNumSearchBtn>
           </S.PostNumWrapper>
           <S.PostInput value = {prop.address !== "" ? prop.address : prop.data?.fetchBoard.boardAddress?.address ?? ""} />
@@ -66,7 +66,9 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
 
         <S.BoxWrapper>
           <S.SubTitle>유튜브</S.SubTitle>
-          <S.LongInput placeholder="링크를 복사해주세요." />
+          <S.LongInput onChange={prop.onChangeYoutubeUrl} 
+                      defaultValue={prop.data?.fetchBoard.youtubeUrl ?? ""}
+                      placeholder="링크를 복사해주세요."/>
         </S.BoxWrapper>
 
         <S.BoxWrapper>
@@ -106,12 +108,14 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
             onChangeTitle={prop.onChangeTitle}
             onChangeContent={prop.onChangeContent}
             onChangeAddressDetail={prop.onChangeAddressDetail}
+            onChangeYoutubeUrl={prop.onChangeYoutubeUrl}
+
             onClickSubmit={prop.onClickSubmit}
             onClickUpdate={prop.onClickUpdate}
             onClickToggle={prop.onClickToggle}
             handleComplete={prop.handleComplete}
             address={prop.address}
-            zipCode={prop.zipCode}
+            zipcode={prop.zipcode}
   
           >
             {prop.isEdit ? "수정하기" : "등록하기"}
