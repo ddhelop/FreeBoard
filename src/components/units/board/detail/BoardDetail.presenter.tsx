@@ -1,10 +1,11 @@
 import * as D from "./BoardDetail.styles";
 import type { IBoardDetailUIProps } from "./BoardDetailTypes";
-import { Space, Tooltip } from 'antd';
+import { Modal, Space, Tooltip } from 'antd';
 
 export default function BoardDetailUI(prop: IBoardDetailUIProps) {
+
   return (
-    <>
+    <>  
       <D.Wrapper>
         <D.ContentsWrapper>
           <D.Header>
@@ -59,9 +60,17 @@ export default function BoardDetailUI(prop: IBoardDetailUIProps) {
         <D.OptionDiv>
           <D.OptionBtn onClick={prop.onClickGoHome}>목록으로</D.OptionBtn>
           <D.OptionBtn onClick={prop.onClickUpdate}>수정하기</D.OptionBtn>
-          <D.OptionBtn onClick={prop.onClickDeleteBoard}>삭제하기</D.OptionBtn>
+          <D.OptionBtn onClick={prop.showModal}>삭제하기</D.OptionBtn>
         </D.OptionDiv>
       </D.Wrapper>
+      <D.DeleteModal
+        title="알림"
+        open={prop.open}
+        onOk={prop.onClickDeleteBoard}
+        onCancel={prop.showModal}
+      >
+        <p>게시글을 정말로 삭제하시겠습니까?</p>
+      </D.DeleteModal>
     </>
   );
 }

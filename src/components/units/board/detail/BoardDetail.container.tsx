@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import BoardDetailUI from "./BoardDetail.presenter";
 import { DELETE_BOARD, DISLIKE_BOARD, FETCH_BOARD, LIKE_BOARD } from "./BoardDetail.query";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import type{
   IMutation,
   IMutationDeleteBoardArgs,
@@ -12,6 +13,10 @@ import type{
 } from "../../../../commons/types/generated/types";
 
 export default function BoardDetail() {
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState('Content of the modal');
+
   const router = useRouter();
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
@@ -65,15 +70,21 @@ export default function BoardDetail() {
     IMutationDeleteBoardArgs
   >(DELETE_BOARD);
 
+
   const onClickDeleteBoard = async() => {
     await deleteBoard({
       variables: {
         boardId: router.query.boardId as string,
       },
     });
-    alert("게시글이 삭제되었습니다.");
     await router.push("../../../../boards");
   };
+
+  const showModal = () => {
+    setOpen((prev) => !prev);
+    
+  }
+  
 
   const onClickUpdate = async () => {
     if (router.query.boardId) {
@@ -88,11 +99,14 @@ export default function BoardDetail() {
   const onClickGoHome = async () => {
     await router.push(`/boards`);
   };
+  
 
   return (
     <BoardDetailUI
       onClickGoHome={onClickGoHome}
       data={data}
+      open={open}
+      showModal = {showModal}
       onClickDeleteBoard={onClickDeleteBoard}
       onClickUpdate={onClickUpdate}
       onClickLike={onClickLike}

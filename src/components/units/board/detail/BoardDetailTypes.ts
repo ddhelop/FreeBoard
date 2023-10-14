@@ -6,5 +6,7 @@ export interface IBoardDetailUIProps {
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickLike: (event:MouseEvent<HTMLImageElement>) => void;
   onClickDisLike: (event:MouseEvent<HTMLImageElement>) => void;
+  showModal: (event:MouseEvent<HTMLButtonElement>) => void;
   data?: any;
+  open: boolean;
 }

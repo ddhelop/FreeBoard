@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
+import { Modal } from "antd";
 import ReactPlayer from "react-player";
+
+export const DeleteModal = styled(Modal)`
+  height:180px;
+`;
 
 export const Wrapper = styled.div`
   margin: 40px;
