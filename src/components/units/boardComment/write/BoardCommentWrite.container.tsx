@@ -51,7 +51,13 @@ export default function BoardCommentWrite() {
       alert(error.message);
     }
     alert("댓글이 등록되었습니다.");
+    
+    setWriter("");
+    setPassword("");
+    setContents("");
   };
+
+
   return (
     <BoardCommentWriteUI
       onClickSubmit={onClickSubmit}
@@ -59,6 +65,9 @@ export default function BoardCommentWrite() {
       onChangeWriter={onChangeWriter}
       onChangeContents={onChangeContents}
       onChangeValue = {onChangeValue}
+      writer={writer}
+      password={password}
+      contents={contents}
     />
   );
 }

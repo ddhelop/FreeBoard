@@ -11,10 +11,16 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUI) {
           <W.Title>댓글</W.Title>
         </W.TitleDiv>
         <W.UserDataDiv>
-          <W.UserData placeholder="작성자" onChange={props.onChangeWriter} />
           <W.UserData
+              placeholder="작성자"
+              onChange={props.onChangeWriter}
+              value={props.writer}
+            />
+          <W.UserData
+            type="password"
             placeholder="비밀번호"
             onChange={props.onChangePassword}
+            value={props.password}
           />
           <W.RateStar onChange={props.onChangeValue} value={props.value}/>
         </W.UserDataDiv>
@@ -22,6 +28,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUI) {
           <W.CommentText
             onChange={props.onChangeContents}
             placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+            value={props.contents}
           />
           <W.CommentTextFooter>
             <W.TextCount>0/100</W.TextCount>

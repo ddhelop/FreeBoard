@@ -7,4 +7,7 @@ export interface IBoardCommentWriteUI {
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeValue: (value:number) => void;
   value?:number;
+  writer : string;
+  password: string;
+  contents:string;
 }

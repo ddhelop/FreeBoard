@@ -28,7 +28,7 @@ export default function BoardCommentList() {
 
   const onClickDeleteComment = async (event: MouseEvent<HTMLImageElement>) => {
     try {
-      if (event.target instanceof HTMLInputElement) {
+      if(event.target instanceof HTMLImageElement){
         const myPassword = prompt("비밀번호를 입력하세요.");
         await deleteBoardComment({
           variables: {
