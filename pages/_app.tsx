@@ -12,7 +12,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <>
         <Global styles={globalStyles}/>
         <Layout>
+          <div>
           <Component {...pageProps} />
+          </div>
         </Layout>
       </>
     </ApolloSetting>
