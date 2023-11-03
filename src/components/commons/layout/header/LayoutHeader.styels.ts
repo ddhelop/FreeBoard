@@ -19,6 +19,7 @@ export const SubWrapper = styled.div`
 export const LogoWrapper = styled.div`
   display:flex;
   flex-direction:row;
+  cursor: pointer;
 `
 export const Icon = styled.img`
   width: 36px;
@@ -27,6 +28,7 @@ export const Icon = styled.img`
   margin-right:19px;
 `
 export const Text = styled.h1`
+  margin-top:10px;
   font-weight: 2000;
 `
 export const LoginWrapper= styled.div``

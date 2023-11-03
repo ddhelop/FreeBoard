@@ -1,17 +1,17 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  margin: 40px;
   background-color: white;
-  width: 1200px;
+  width: 1920px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items:center;
   padding: 100px;
 `;
 
 export const ListWrapper = styled.div`
-  width: 1200px;
+  width: 1100px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `;
