@@ -126,6 +126,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const onClickUpdate = async () => {
     if (!title && !contents) {
       alert("수정할 내용이 없습니다.");
+      console.log("111")
       return;
     }
 
