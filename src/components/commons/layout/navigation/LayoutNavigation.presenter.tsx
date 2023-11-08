@@ -1,9 +1,14 @@
-import { MouseEvent } from "react"
+import { Fragment, MouseEvent } from "react"
 import * as N from "./LayoutNavigation.styles"
 
 interface ILayoutNavigationProps{
-  onClickGoFreeBoard: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickMenu: (event: MouseEvent<HTMLButtonElement>) => void;
 }
+const NAVIGATION_MENUS = [
+  { name: "자유게시판", page: "/boards" },
+  { name: "중고마켓", page: "/markets" },
+  {name: "마이페이지", page: "/mypages"},
+]
 
 export default function LayoutNavigationUI(props:ILayoutNavigationProps){
   
@@ -11,9 +16,10 @@ export default function LayoutNavigationUI(props:ILayoutNavigationProps){
     <>
       <N.Wrapper>
         <N.MenuWrapper>
-          <N.Button onClick={props.onClickGoFreeBoard}>자유게시판</N.Button>
-          <N.CenterButton>중고마켓</N.CenterButton>
-          <N.Button>마이페이지</N.Button>
+          {NAVIGATION_MENUS.map((el) => (
+            <N.MenuItem id={el.page} key={el.page} onClick={props.onClickMenu}>{el.name}</N.MenuItem>
+          ))}
+          
         </N.MenuWrapper>
       </N.Wrapper>
     </>
