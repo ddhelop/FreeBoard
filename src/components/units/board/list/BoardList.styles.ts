@@ -52,7 +52,7 @@ export const ColumnTitle = styled.div`
 `;
 
 export const Footer = styled.div`
-  width: 1200px;
+  width: 1100px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -61,7 +61,10 @@ export const Footer = styled.div`
 `;
 
 export const PageNumberDiv = styled.div`
-  margin-right: 33%;
+  margin-left:23px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 `;
 
 export const Number = styled.span`
@@ -69,5 +72,6 @@ export const Number = styled.span`
 `;
 
 export const MakePageBtn = styled.img`
+  margin-left:280px;
   cursor: pointer;
 `;

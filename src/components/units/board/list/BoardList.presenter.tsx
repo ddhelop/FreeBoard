@@ -1,8 +1,10 @@
+import { MouseEvent, useState } from "react";
 import { getDate } from "../../../../commons/libraries/utils";
 import * as L from "./BoardList.styles";
 import type { IBoardListUIProps } from "./BoardListTypes";
 
 export default function BoardListUI(props: IBoardListUIProps) {
+  
   return (
     <>
       <L.Wrapper>
@@ -15,7 +17,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
           </L.Row>
 
           {props.data?.fetchBoards.map((el: any) => (
-            <L.Row key={el.number}>
+            <L.Row key={el._id}>
               <L.ColumnBasic>
                 {String(el._id).slice(-4).toUpperCase()}
               </L.ColumnBasic>
@@ -30,8 +32,24 @@ export default function BoardListUI(props: IBoardListUIProps) {
 
         <L.Footer>
           <L.PageNumberDiv>
-            <L.Number>하나</L.Number>
-            <L.Number>둘</L.Number>
+            <span onClick={props.onClickPrevPage}>이전</span>
+            {new Array(10).fill(1).map(
+              (_, index) =>
+                index + (props.startPage ?? 1) <= (props.lastPage ?? 0) && (
+                  <span
+                    key={index+(props.startPage ?? 1)}
+                    style={{ margin: "8px" }}
+                    id={String(index+(props.startPage ?? 1))}
+                    onClick={props.onClickPage}
+                  >
+                    {index+(props.startPage ?? 1)}
+                  </span>
+                )
+            )}
+            <span onClick={props.onClickNextPage}>다음</span>
+              
+            {/* {<L.Number>하나</L.Number>
+            <L.Number>둘</L.Number>} */}
           </L.PageNumberDiv>
 
           <L.MakePageBtn
