@@ -2,6 +2,7 @@ import { MouseEvent, useState } from "react";
 import { getDate } from "../../../../commons/libraries/utils";
 import * as L from "./BoardList.styles";
 import type { IBoardListUIProps } from "./BoardListTypes";
+import PaginationComponent from "../../../commons/pagination/Pagination";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   
@@ -29,29 +30,9 @@ export default function BoardListUI(props: IBoardListUIProps) {
             </L.Row>
           ))}
         </L.ListWrapper>
-
+        
+        <PaginationComponent refetch={props.refetch} count={props.count} />
         <L.Footer>
-          <L.PageNumberDiv>
-            <span onClick={props.onClickPrevPage}>이전</span>
-            {new Array(10).fill(1).map(
-              (_, index) =>
-                index + (props.startPage ?? 1) <= (props.lastPage ?? 0) && (
-                  <span
-                    key={index+(props.startPage ?? 1)}
-                    style={{ margin: "8px" }}
-                    id={String(index+(props.startPage ?? 1))}
-                    onClick={props.onClickPage}
-                  >
-                    {index+(props.startPage ?? 1)}
-                  </span>
-                )
-            )}
-            <span onClick={props.onClickNextPage}>다음</span>
-              
-            {/* {<L.Number>하나</L.Number>
-            <L.Number>둘</L.Number>} */}
-          </L.PageNumberDiv>
-
           <L.MakePageBtn
             src="./list/makePage.png"
             onClick={props.onClickMakePost}

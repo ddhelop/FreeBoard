@@ -67,11 +67,8 @@ export const PageNumberDiv = styled.div`
   align-items:center;
 `;
 
-export const Number = styled.span`
-  cursor: pointer;
-`;
-
 export const MakePageBtn = styled.img`
   margin-left:280px;
   cursor: pointer;
 `;
+
