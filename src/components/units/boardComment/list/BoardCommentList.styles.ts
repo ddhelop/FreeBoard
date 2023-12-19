@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {Rate} from "antd"
+import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   margin: 40px;

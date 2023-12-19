@@ -11,6 +11,7 @@ import type {
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function BoardCommentList() {
   const router = useRouter();
