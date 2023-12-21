@@ -5,11 +5,15 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUI) {
   return (
     <>
       <W.Wrapper>
+        {props.isEdit ?? 
+          <>
         <W.DividedLine></W.DividedLine>
         <W.TitleDiv>
           <W.CommentImg src="/commentWrite/commentIcon.png"></W.CommentImg>
           <W.Title>댓글</W.Title>
-        </W.TitleDiv>
+          </W.TitleDiv>
+          </>
+        }
         <W.UserDataDiv>
           <W.UserData
               placeholder="작성자"
@@ -32,9 +36,15 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUI) {
           />
           <W.CommentTextFooter>
             <W.TextCount>0/100</W.TextCount>
+            {props.isEdit ?
+            <W.CommentSubmit onClick={props.onClickUpdate}>
+              수정하기
+            </W.CommentSubmit>
+            : 
             <W.CommentSubmit onClick={props.onClickSubmit}>
               등록하기
-            </W.CommentSubmit>
+            </W.CommentSubmit>}
+            
           </W.CommentTextFooter>
         </W.CommentDiv>
       </W.Wrapper>

@@ -1,18 +1,20 @@
 import { useMutation } from "@apollo/client";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
-import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.query";
+import { CREATE_BOARD_COMMENT, UPDATE_BOARD_COMMENT } from "./BoardCommentWrite.query";
 import { useRouter } from "next/router";
 import type{ ChangeEvent } from "react";
 import { useState } from "react";
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.query";
+import { IBoardCommentUpdateUI } from "./BoardCommentWriteTypes";
 
-export default function BoardCommentWrite() {
+export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
   const [value, setValue] = useState(0);
 
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
+  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const router = useRouter();
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
@@ -57,14 +59,39 @@ export default function BoardCommentWrite() {
     setContents("");
   };
 
+  const onClickUpdate = async () => {
+    try {
+      await updateBoardComment({
+        variables: {
+          boardId: router.query.id,
+          password: password,
+          updateBoardCommentInput: {
+            contents,
+            rating: value,
+          },
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.id, password: password }
+          }
+        ]
+      })
+    } catch (error:any) {
+      alert(error.message)
+    }
+  }
+
 
   return (
     <BoardCommentWriteUI
+      isEdit={props.isEdit}
       onClickSubmit={onClickSubmit}
+      onClickUpdate={onClickUpdate}
       onChangePassword={onChangePassword}
       onChangeWriter={onChangeWriter}
       onChangeContents={onChangeContents}
-      onChangeValue = {onChangeValue}
+      onChangeValue={onChangeValue}
       writer={writer}
       password={password}
       contents={contents}

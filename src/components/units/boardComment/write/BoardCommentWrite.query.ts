@@ -15,3 +15,20 @@ export const CREATE_BOARD_COMMENT = gql`
   }
 `;
 
+export const UPDATE_BOARD_COMMENT = gql`
+  mutation updateBoardComment(
+    $updateBoardCommentInput: UpdateBoardCommentInput!
+    $password : String
+    $boardId : ID!
+  ){
+    updateBoardComment(
+      updateBoardCommentInput: $updateBoardCommentInput
+      password: $password
+      boardId: $boardId
+    ){
+      _id
+      rating
+    }
+  }
+`
+

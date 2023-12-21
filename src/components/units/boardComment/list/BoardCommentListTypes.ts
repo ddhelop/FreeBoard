@@ -1,6 +1,10 @@
 import type { MouseEvent } from "react";
+import { IBoardComment } from "../../../../commons/types/generated/types";
 
 export interface IBoardCommentListUIProps {
   data?: any;
-  onClickDeleteComment: (event: MouseEvent<HTMLImageElement>) => void;
+}
+
+export interface IBoardCommentListManageUIProps{
+  el: IBoardComment;
 }

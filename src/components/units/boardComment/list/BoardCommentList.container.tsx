@@ -5,20 +5,18 @@ import {
   FETCH_BOARD_COMMENTS,
 } from "./BoardCommentList.query";
 import { useRouter } from "next/router";
-import type { MouseEvent } from "react";
+import { useState, type MouseEvent } from "react";
 import type {
   IMutation,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
-import InfiniteScroll from "react-infinite-scroller";
+import BoardCommentListManage from "./BoardCommentList.presenterManage";
 
 export default function BoardCommentList() {
   const router = useRouter();
 
-  const [deleteBoardComment] =
-    useMutation<Pick<IMutation, "deleteBoardComment">>(DELETE_BOARD_COMMENT);
-  const { data } = useQuery<
+  const { data,fetchMore } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {
@@ -27,33 +25,10 @@ export default function BoardCommentList() {
     },
   });
 
-  const onClickDeleteComment = async (event: MouseEvent<HTMLImageElement>) => {
-    try {
-      if(event.target instanceof HTMLImageElement){
-        const myPassword = prompt("비밀번호를 입력하세요.");
-        await deleteBoardComment({
-          variables: {
-            password: myPassword,
-            boardCommentId: event.target.id,
-          },
-          refetchQueries: [
-            {
-              query: FETCH_BOARD_COMMENTS,
-              variables: { boardId: router.query.boardId },
-            },
-          ],
-        });
-        alert("댓글이 삭제되었습니다.");
-      }
-    } catch (error: any) {
-      alert(error.message);
-    }
-  };
 
   return (
-    <BoardCommentListUI
+    <BoardCommentListManage
       data={data}
-      onClickDeleteComment={onClickDeleteComment}
     />
   );
 }

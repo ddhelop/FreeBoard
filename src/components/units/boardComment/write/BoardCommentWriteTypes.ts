@@ -2,6 +2,7 @@ import type{ ChangeEvent, MouseEvent } from "react";
 
 export interface IBoardCommentWriteUI {
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -9,5 +10,13 @@ export interface IBoardCommentWriteUI {
   value?:number;
   writer : string;
   password: string;
-  contents:string;
+  contents: string;
+  
+  isEdit?: boolean;
+  
+}
+
+
+export interface IBoardCommentUpdateUI {
+  isEdit?: boolean;
 }
