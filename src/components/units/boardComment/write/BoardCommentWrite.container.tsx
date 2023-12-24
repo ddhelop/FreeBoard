@@ -63,8 +63,8 @@ export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
     try {
       await updateBoardComment({
         variables: {
-          boardId: router.query.id,
-          password: password,
+          boardCommentId: router.query.boardId,
+          password,
           updateBoardCommentInput: {
             contents,
             rating: value,
@@ -73,7 +73,7 @@ export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.id, password: password }
+            variables: { boardId: router.query.boardId }
           }
         ]
       })

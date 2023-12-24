@@ -19,12 +19,12 @@ export const UPDATE_BOARD_COMMENT = gql`
   mutation updateBoardComment(
     $updateBoardCommentInput: UpdateBoardCommentInput!
     $password : String
-    $boardId : ID!
+    $boardCommentId : ID!
   ){
     updateBoardComment(
       updateBoardCommentInput: $updateBoardCommentInput
       password: $password
-      boardId: $boardId
+      boardCommentId: $boardCommentId
     ){
       _id
       rating
