@@ -1,4 +1,5 @@
-import type{ ChangeEvent, MouseEvent } from "react";
+import type{ ChangeEvent, Dispatch, MouseEvent, SetStateAction } from "react";
+import { IBoardComment } from "../../../../commons/types/generated/types";
 
 export interface IBoardCommentWriteUI {
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -11,7 +12,7 @@ export interface IBoardCommentWriteUI {
   writer : string;
   password: string;
   contents: string;
-  
+  el: IBoardComment
   isEdit?: boolean;
   
 }
@@ -19,4 +20,6 @@ export interface IBoardCommentWriteUI {
 
 export interface IBoardCommentUpdateUI {
   isEdit?: boolean;
+  el: IBoardComment
+  setIsEdit: Dispatch<SetStateAction<boolean>>;
 }

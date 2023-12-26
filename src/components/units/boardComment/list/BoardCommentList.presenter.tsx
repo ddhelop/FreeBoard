@@ -65,7 +65,7 @@ export default function BoardCommentListUI(props: IBoardCommentListManageUIProps
           </L.CommentDiv>
         </L.Wrapper>
 
-      ) : <BoardCommentWrite isEdit={isEdit} />
+      ) : <BoardCommentWrite isEdit={isEdit} el={props.el} setIsEdit={setIsEdit} />
       }  
     </div>
       

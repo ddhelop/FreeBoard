@@ -59,11 +59,12 @@ export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
     setContents("");
   };
 
-  const onClickUpdate = async () => {
+  const onClickUpdate = async (event:any) => {
+    
     try {
       await updateBoardComment({
         variables: {
-          boardCommentId: router.query.boardId,
+          boardCommentId: props.el?._id,
           password,
           updateBoardCommentInput: {
             contents,
@@ -73,13 +74,16 @@ export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.boardId }
-          }
-        ]
-      })
+            variables: { boardId: router.query.boardId },
+          },
+        ],
+      });
     } catch (error:any) {
       alert(error.message)
+      return;
     }
+    alert("댓글이 수정되었습니다.");
+    props.setIsEdit(false);
   }
 
 
@@ -95,6 +99,7 @@ export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
       writer={writer}
       password={password}
       contents={contents}
+      el={props.el}
     />
   );
 }
