@@ -2,7 +2,7 @@
 import BoardCommentListUI from "./BoardCommentList.presenter";
 import {IBoardCommentListUIProps } from "./BoardCommentListTypes";
 
-export default function BoardCommentListManage(props: IBoardCommentListUIProps) {
+export default function BoardCommentListManage(props: IBoardCommentListUIProps):JSX.Element {
 
   return (
     <div>

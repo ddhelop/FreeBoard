@@ -7,8 +7,39 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
-  padding: 100px;
+  padding: 50px;
 `;
+
+export const SearchDiv = styled.div`
+  display:flex;
+  flex-direction:row
+`
+export const SearchInput = styled.input`
+  margin-bottom : 25px;
+  width:776px;
+  height:52px;
+  border-radius:10px;
+  background-color: #f2f2f2;
+  padding: 0 0 0 15px;
+  margin-right:28px;
+  border:none
+`
+export const SearchDayInput = styled.div`
+  width:144px;
+  height:52px;
+  background-color:white;
+  border:1px solid black;
+  margin-right:28px;
+  border-radius: 10px;
+`
+
+export const SearchButton = styled.button`
+  width:94px;
+  height:52px;
+  border-radius:10px;
+  background-color:black;
+  color: white;
+`
 
 export const ListWrapper = styled.div`
   width: 1100px;

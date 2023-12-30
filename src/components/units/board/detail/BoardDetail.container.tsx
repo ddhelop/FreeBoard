@@ -12,10 +12,8 @@ import type{
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 
-export default function BoardDetail() {
+export default function BoardDetail():JSX.Element {
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
 
   const router = useRouter();
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
@@ -30,7 +28,7 @@ export default function BoardDetail() {
     IMutationLikeBoardArgs
     >(LIKE_BOARD);
 
-    const onClickLike = async () => { 
+    const onClickLike = async ():Promise<void> => { 
       await likeBoard({
         variables: {
           boardId: router.query.boardId as string,
@@ -50,7 +48,7 @@ export default function BoardDetail() {
       IMutationDislikeBoardArgs
       >(DISLIKE_BOARD);
 
-    const onClickDisLike = async () => {
+    const onClickDisLike = async ():Promise<void> => {
       console.log(data);
       await dislikeBoard({
         variables: {
@@ -71,7 +69,7 @@ export default function BoardDetail() {
   >(DELETE_BOARD);
 
 
-  const onClickDeleteBoard = async() => {
+  const onClickDeleteBoard = async():Promise<void> => {
     await deleteBoard({
       variables: {
         boardId: router.query.boardId as string,
@@ -80,13 +78,13 @@ export default function BoardDetail() {
     await router.push("../../../../boards");
   };
 
-  const showModal = () => {
+  const showModal = ():void => {
     setOpen((prev) => !prev);
     
   }
   
 
-  const onClickUpdate = async () => {
+  const onClickUpdate = async () : Promise<void>=> {
     if (router.query.boardId) {
       const boardId = Array.isArray(router.query.boardId)
         ? router.query.boardId[0]
@@ -96,7 +94,7 @@ export default function BoardDetail() {
       // router.query.boardId가 undefined인 경우 처리할 로직을 여기에 추가하세요.
     }
   };
-  const onClickGoHome = async () => {
+  const onClickGoHome = async ():Promise<void> => {
     await router.push(`/boards`);
   };
   

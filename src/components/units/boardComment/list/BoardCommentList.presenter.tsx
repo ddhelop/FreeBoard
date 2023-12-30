@@ -7,13 +7,13 @@ import { MouseEvent, useState } from "react";
 import { useRouter } from "next/router";
 import BoardCommentWrite from "../write/BoardCommentWrite.container";
 
-export default function BoardCommentListUI(props: IBoardCommentListManageUIProps) {
+export default function BoardCommentListUI(props: IBoardCommentListManageUIProps):JSX.Element {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
 
   const [deleteBoardComment] =
     useMutation<Pick<IMutation, "deleteBoardComment">>(DELETE_BOARD_COMMENT);
-  const onClickDeleteComment = async (event: MouseEvent<HTMLImageElement>) => {
+  const onClickDeleteComment = async (event: MouseEvent<HTMLImageElement>):Promise<void> => {
     try {
       if(event.target instanceof HTMLImageElement){
         const myPassword = prompt("비밀번호를 입력하세요.");
@@ -36,7 +36,7 @@ export default function BoardCommentListUI(props: IBoardCommentListManageUIProps
     }
   };
   
-  const onClickCommentUpdate = () => {
+  const onClickCommentUpdate = ():void => {
     setIsEdit(true);
   }
 
@@ -44,6 +44,7 @@ export default function BoardCommentListUI(props: IBoardCommentListManageUIProps
     <div>
       { !isEdit ? (
         <L.Wrapper>
+          
           <L.CommentDiv>
             <L.UserIcon src="/commentList/UserIcon.png" />
             <L.CommentTextDiv>

@@ -1,22 +1,19 @@
-import { useMutation, useQuery } from "@apollo/client";
-import BoardCommentListUI from "./BoardCommentList.presenter";
+import { useQuery } from "@apollo/client";
 import {
-  DELETE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
 } from "./BoardCommentList.query";
 import { useRouter } from "next/router";
-import { useState, type MouseEvent } from "react";
+
 import type {
-  IMutation,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
 import BoardCommentListManage from "./BoardCommentList.presenterManage";
 
-export default function BoardCommentList() {
+export default function BoardCommentList():JSX.Element {
   const router = useRouter();
 
-  const { data,fetchMore } = useQuery<
+  const { data } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {

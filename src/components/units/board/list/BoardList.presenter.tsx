@@ -1,14 +1,18 @@
-import { MouseEvent, useState } from "react";
 import { getDate } from "../../../../commons/libraries/utils";
 import * as L from "./BoardList.styles";
 import type { IBoardListUIProps } from "./BoardListTypes";
 import PaginationComponent from "../../../commons/pagination/Pagination";
 
-export default function BoardListUI(props: IBoardListUIProps) {
+export default function BoardListUI(props: IBoardListUIProps):JSX.Element {
   
   return (
     <>
       <L.Wrapper>
+        <L.SearchDiv>
+          <L.SearchInput type="text" placeholder="🔎  제목을 검색해주세요." />
+          <L.SearchDayInput></L.SearchDayInput>
+          <L.SearchButton>검색하기</L.SearchButton>
+        </L.SearchDiv>
         <L.ListWrapper>
           <L.Row>
             <L.ColumnHeaderBasic>번호</L.ColumnHeaderBasic>

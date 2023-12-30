@@ -2,20 +2,20 @@ import { useQuery } from "@apollo/client";
 import BoardListUI from "./BoardList.presenter";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.query";
 import { useRouter } from "next/router";
-import { type MouseEvent, MouseEventHandler, useState } from "react";
+import { type MouseEvent} from "react";
 import type {
   IQuery,
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
 } from "../../../../commons/types/generated/types";
 
-export default function BoardList() {
+export default function BoardList():JSX.Element {
   const router = useRouter();
 
-  const onClickMakePost = async () => {
+  const onClickMakePost = async ():Promise<void> => {
     await router.push("../../../../boards/new");
   };
-  const onClickRow = async (event: MouseEvent<HTMLDivElement>) => {
+  const onClickRow = async (event: MouseEvent<HTMLDivElement>):Promise<void> => {
     if (event.target instanceof HTMLDivElement)
       await router.push(`/boards/${event.target.id}`);
   };

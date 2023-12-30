@@ -1,8 +1,8 @@
 import * as D from "./BoardDetail.styles";
 import type { IBoardDetailUIProps } from "./BoardDetailTypes";
-import { Modal, Space, Tooltip } from 'antd';
+import {  Space, Tooltip } from 'antd';
 
-export default function BoardDetailUI(prop: IBoardDetailUIProps) {
+export default function BoardDetailUI(prop: IBoardDetailUIProps):JSX.Element {
 
   return (
     <>  
@@ -34,7 +34,7 @@ export default function BoardDetailUI(prop: IBoardDetailUIProps) {
           <D.Body>
             <D.Title>{prop.data?.fetchBoard.title}</D.Title>
             <D.Contents>{prop.data?.fetchBoard.contents}</D.Contents>
-            {prop.data?.fetchBoard.youtubeUrl != "" && (
+            {prop.data?.fetchBoard.youtubeUrl !== "" && (
               <D.Youtube
                 url ={prop.data?.fetchBoard.youtubeUrl ?? ""}
                 width="486px"

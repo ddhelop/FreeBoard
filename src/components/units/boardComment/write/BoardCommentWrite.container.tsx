@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.query";
 import { IBoardCommentUpdateUI } from "./BoardCommentWriteTypes";
 
-export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
+export default function BoardCommentWrite(props:IBoardCommentUpdateUI):JSX.Element {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
@@ -17,26 +17,26 @@ export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const router = useRouter();
 
-  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>):void => {
     setWriter(event.target.value);
   };
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>):void => {
     setPassword(event.target.value);
   };
-  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeContents = (event: ChangeEvent<HTMLInputElement>):void => {
     setContents(event.target.value);
   };
-  const onChangeValue = (value:number) => {
+  const onChangeValue = (value:number):void => {
     setValue(value);
   }
 
-  const onClickSubmit = async () => {
+  const onClickSubmit = async ():Promise<void> => {
     try {
       await createBoardComment({
         variables: {
           boardId: router.query.boardId,
           createBoardCommentInput: {
-            writer: writer,
+            writer,
             password,
             contents,
             rating: value,
@@ -59,7 +59,7 @@ export default function BoardCommentWrite(props:IBoardCommentUpdateUI) {
     setContents("");
   };
 
-  const onClickUpdate = async (event:any) => {
+  const onClickUpdate = async (event:any):Promise<void> => {
     
     try {
       await updateBoardComment({
