@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation } from "@apollo/client";
@@ -6,7 +6,7 @@ import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.query";
 import { useRouter } from "next/router";
 import type { IBoardWriteProps, IMyVariable, IBoardAddress } from "./BoardWriteTypes";
 
-export default function BoardWrite(props: IBoardWriteProps) {
+export default function BoardWrite(props: IBoardWriteProps):JSX.Element {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
@@ -25,13 +25,26 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentError] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
   const router = useRouter();
 
-  function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
+  const onChangeFileUrls = (fileUrl: string, index: number): void => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
+  useEffect(() => {
+    const images = props.data?.fetchBoard.images;
+    if (images !== undefined && images !== null) setFileUrls([...images]);
+  }, [props.data]);
+
+  function onChangeWriter(event: ChangeEvent<HTMLInputElement>):void {
     setWriter(event.target.value);
     if (event.target.value !== "") {
       setWriterError("");
@@ -43,7 +56,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>):void {
     setPassword(event.target.value);
     if (event.target.value !== "") {
       setPasswordError("");
@@ -55,7 +68,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
+  function onChangeTitle(event: ChangeEvent<HTMLInputElement>):void {
     setTitle(event.target.value);
     if (event.target.value !== "") {
       setTitleError("");
@@ -67,7 +80,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  function onChangeContent(event: ChangeEvent<HTMLInputElement>) {
+  function onChangeContent(event: ChangeEvent<HTMLInputElement>):void {
     setContent(event.target.value);
     if (event.target.value !== "") {
       setContentError("");
@@ -79,15 +92,15 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>):void => {
     setAddressDetail(event.target.value);
   }
 
-  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>):void => {
     setYoutubeUrl(event.currentTarget.value);
   }
 
-  const onClickSubmit = async () => {
+  const onClickSubmit = async ():Promise<void> => {
     if (!writer) {
       setWriterError("* 이름을 입력해주세요.");
     }
@@ -109,11 +122,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
             contents,
             password,
             youtubeUrl,
+            images: [...fileUrls],
             boardAddress:{
               zipcode,
               address,
               addressDetail,
-            }
+            },
+            
           },
         },
       });
@@ -123,7 +138,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  const onClickUpdate = async () => {
+  const onClickUpdate = async (): Promise<void> => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
+    
     if (!title && !contents) {
       alert("수정할 내용이 없습니다.");
       console.log("111")
@@ -140,7 +159,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if(address) updateBoardInput.boardAddress.address = address;
       if(addressDetail) updateBoardInput.boardAddress.addressDetail = addressDetail
     }
-
+    if (isChangedFiles) updateBoardInput.images = fileUrls;
     try {
       const result = await updateBoard({
         variables: {
@@ -156,13 +175,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
   
-  const handleComplete = (data: any) => {
+  const handleComplete = (data: any):void => {
     setAddress(data.address);
     setZipCode(data.zonecode);
     setIsOpen(false);
   }
   
-const onClickToggle = () =>{
+const onClickToggle = ():void =>{
   setIsOpen((prev) => !prev )
 }
 
@@ -190,6 +209,9 @@ const onClickToggle = () =>{
       address={address}
       zipcode={zipcode}
       handleComplete={handleComplete}
+
+      fileUrls={fileUrls}
+      onChangeFileUrls={onChangeFileUrls}
 
     />
   );

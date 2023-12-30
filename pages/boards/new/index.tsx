@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import BoardWrite from "../../../src/components/units/board/wrtie/BoardWrite.container";
+import BoardWrite from "../../../src/components/units/board/write/BoardWrite.container";
 
 export default function BoardWritePage() {
   

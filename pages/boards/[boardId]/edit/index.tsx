@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import BoardWrite from "../../../../src/components/units/board/wrtie/BoardWrite.container";
+import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.container";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 

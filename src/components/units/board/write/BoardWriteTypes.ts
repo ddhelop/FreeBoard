@@ -12,6 +12,7 @@ export interface IMyVariable {
   contents?: string;
   youtubeUrl?: string;
   boardAddress?: IBoardAddress;
+  images:any
 }
 export interface IBoardAddress{
   address: string;
@@ -29,7 +30,8 @@ export interface IBoardWriteUIProps {
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContent: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeAddressDetail : (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeYoutubeUrl : (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
 
 
   onClickSubmit: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -43,4 +45,6 @@ export interface IBoardWriteUIProps {
   address: string;
   zipcode: string;
   
+
+  fileUrls: string[];
 }

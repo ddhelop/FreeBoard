@@ -2,9 +2,10 @@ import {Modal} from "antd";
 import * as S from "./BoardWrite.styles";
 import type { IBoardWriteUIProps } from "./BoardWriteTypes";
 import DaumPostcodeEmbed from "react-daum-postcode";
+import UploadFile from "../../../commons/upload/UploadFile.container";
 
 
-export default function BoardWriteUI(prop: IBoardWriteUIProps) {
+export default function BoardWriteUI(prop: IBoardWriteUIProps):JSX.Element {
   return (
     <>
       <S.Wrapper>
@@ -74,9 +75,14 @@ export default function BoardWriteUI(prop: IBoardWriteUIProps) {
         <S.BoxWrapper>
           <S.SubTitle>사진 첨부</S.SubTitle>
           <S.ImageWrapper>
-            <S.ImgUploadBox></S.ImgUploadBox>
-            <S.ImgUploadBox></S.ImgUploadBox>
-            <S.ImgUploadBox></S.ImgUploadBox>
+              {prop.fileUrls.map((el, index) => (
+              <UploadFile
+                key={el}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={prop.onChangeFileUrls}
+              />
+            ))}
           </S.ImageWrapper>
         </S.BoxWrapper>
 

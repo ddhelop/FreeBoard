@@ -118,13 +118,6 @@ export const ImageWrapper = styled.div`
   flex-direction: row;
 `;
 
-export const ImgUploadBox = styled.div`
-  width: 78px;
-  height: 78px;
-  background-color: #bdbdbd;
-  margin-right: 28px;
-`;
-
 export const RadioInputWrapper = styled.div`
   display: flex;
   flex-direction: row;
