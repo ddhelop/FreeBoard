@@ -1,6 +1,6 @@
 import * as B from "./LayoutBanner.styles"
 
-export default function LayoutBannerUI(){
+export default function LayoutBannerUI():JSX.Element{
   
   return(
     <>

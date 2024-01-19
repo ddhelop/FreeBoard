@@ -12,7 +12,7 @@ const NAVIGATION_MENUS = [
   
 ]
 
-export default function LayoutNavigationUI(props:ILayoutNavigationProps){
+export default function LayoutNavigationUI(props:ILayoutNavigationProps):JSX.Element{
   
   return (
     <>

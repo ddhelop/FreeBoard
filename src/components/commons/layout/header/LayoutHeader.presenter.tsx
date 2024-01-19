@@ -7,7 +7,7 @@ interface ILayoutHeaderProps {
   onClickSignUpBtn: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function LayoutHeaderUI(props:ILayoutHeaderProps){
+export default function LayoutHeaderUI(props:ILayoutHeaderProps):JSX.Element{
 
   return(
     <>

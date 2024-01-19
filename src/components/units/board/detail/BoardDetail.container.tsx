@@ -12,7 +12,7 @@ import type{
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 
-export default function BoardDetail():JSX.Element {
+export default function wBoardDetail():JSX.Element {
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
