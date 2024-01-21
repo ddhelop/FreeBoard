@@ -9,9 +9,9 @@ export default function BoardListUI(props: IBoardListUIProps):JSX.Element {
     <>
       <L.Wrapper>
         <L.SearchDiv>
-          <L.SearchInput type="text" placeholder="🔎  제목을 검색해주세요." />
+          <L.SearchInput type="text" placeholder="🔎  제목을 검색해주세요." onChange={props.onChangeSearch} />
           <L.SearchDayInput></L.SearchDayInput>
-          <L.SearchButton>검색하기</L.SearchButton>
+          <L.SearchButton onClick={props.onClickSearch}>검색하기</L.SearchButton>
         </L.SearchDiv>
         <L.ListWrapper>
           <L.Row>

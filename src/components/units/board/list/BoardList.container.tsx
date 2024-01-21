@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import BoardListUI from "./BoardList.presenter";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.query";
 import { useRouter } from "next/router";
-import { type MouseEvent} from "react";
+import { ChangeEvent, useState, type MouseEvent} from "react";
 import type {
   IQuery,
   IQueryFetchBoardsArgs,
@@ -24,6 +24,21 @@ export default function BoardList():JSX.Element {
     void refetch({ page: Number(event?.currentTarget.id) });
   }
 
+  // ///////// About Search
+  const [search, setSearch] = useState("")
+
+  const onChangeSearch = (event: ChangeEvent<HTMLInputElement>): void => {
+    setSearch(event.currentTarget.value)
+  }
+
+  const onClickSearch = (event: MouseEvent<HTMLSpanElement>):void => {
+    void refetch({
+      search,
+      page: 1
+    })
+  }
+  // ////////////
+  
   const { data, refetch } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
     FETCH_BOARDS
   );
@@ -33,8 +48,7 @@ export default function BoardList():JSX.Element {
     Pick<IQuery, "fetchBoardsCount">,
     IQueryFetchBoardsCountArgs
     >(FETCH_BOARDS_COUNT);
-  
-  const lastPage = Math.ceil((dataBoardsCount?.fetchBoardsCount ?? 10) / 10);
+    
   
   return (
     <BoardListUI
@@ -44,6 +58,8 @@ export default function BoardList():JSX.Element {
       onClickMakePost={onClickMakePost}
       onClickRow={onClickRow}
       onClickPage={onClickPage}
+      onClickSearch={onClickSearch}
+      onChangeSearch={onChangeSearch}
       dataBoardsCount = {dataBoardsCount}
     />
   );

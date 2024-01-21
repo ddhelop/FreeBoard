@@ -91,12 +91,12 @@ export const Footer = styled.div`
   justify-content: flex-end;
 `;
 
-export const PageNumberDiv = styled.div`
+/* export const PageNumberDiv = styled.div`
   margin-left:23px;
   display:flex;
   justify-content:center;
   align-items:center;
-`;
+`; */
 
 export const MakePageBtn = styled.img`
   margin-left:280px;

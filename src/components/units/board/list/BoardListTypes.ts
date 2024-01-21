@@ -1,4 +1,4 @@
-import type { MouseEvent } from "react";
+import type { ChangeEvent, MouseEvent } from "react";
 import type { IQuery, IQueryFetchBoardsArgs } from "../../../../commons/types/generated/types";
 import { ApolloQueryResult } from "@apollo/client";
 
@@ -12,6 +12,8 @@ export interface IBoardListUIProps {
   onClickMakePost: () => void;
   onClickRow: (event: MouseEvent<HTMLDivElement>) => void;
   onClickPage: (event: MouseEvent<HTMLSpanElement>) => void;
+  onClickSearch: (event: MouseEvent<HTMLSpanElement>) => void;
+  onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
   dataBoardsCount?: Pick<IQuery, "fetchBoardsCount">;
 }
 
